@@ -1,62 +1,74 @@
 <!doctype html>
 <html>
-   <head>
-      <title>Sounds</title>
-   </head>
-   <body>
-      <script>
-         document.addEventListener("DOMContentLoaded", function() {
-             const red = document.getElementById("red");
-             const blue = document.getElementById("blue");
-             const green = document.getElementById("green");
-             const playButton = document.getElementById("play");
-             const ne = document.getElementById("new");
-             ne.addEventListener("click", restart);
-             playButton.addEventListener("click", play);
-         });
-         
-         let song = [1, 2, 3, 4];
-         
-         function restart(e) {
-             function randomTone() {
-                 return Math.floor(Math.random() * 4) + 1;
-             }
-             song = [];
-             for(let i = 0; i < 5; i++) {
-                 song.push(randomTone());
-             }
+
+<head>
+    <title>Sounds</title>
+</head>
+
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const red = document.getElementById("red");
+            const blue = document.getElementById("blue");
+            const green = document.getElementById("green");
+            const yellow = document.getElementById("yellow");
+            const playButton = document.getElementById("play");
+            const ne = document.getElementById("new");
+            ne.addEventListener("click", restart);
+            playButton.addEventListener("click", play);
+        });
+
+        let song = [1, 2, 3, 4];
+        let played = [];
+
+        function key(e) {
+            const id = e.target.id;
+            let pitch;
+            if (id === red) {
+            }
+            playNote(e
          }
-         function play(e) {
-             function delayedNote(index) {
-                 setTimeout(function() {
-                     const note = song[index];
-                     playNote(note);
-                 }, 500 * index);
-             }
-             for(let i = 0; i < song.length; i++) {
-                 delayedNote(i);
-             }
-         }
-         async function playNote(pitch) {
-             const note = "note.mp3"; 
-             const context = new AudioContext();
-             const source = context.createBufferSource();
-             const audioBuffer = await fetch(note)
-               .then(res => res.arrayBuffer())
-               .then(ArrayBuffer => context.decodeAudioData(ArrayBuffer));
-             source.buffer = audioBuffer;
-             source.playbackRate.value = pitch
-             source.connect(context.destination);
-             source.start();
-         }
-      </script>
-      <h1>Play the song again!</h1>
-      <p>Listen to the generated song and play the songs again</p>
-      <button id="red">Red</button>
-      <button id="blue">Blue</button>
-      <button id="green">Green</button>
-      <br />
-      <button id="play">Play again</button>
-      <button id="new">New Game</button>
-   </body>
+        function restart(e) {
+            function randomTone() {
+                return Math.floor(Math.random() * 4) + 1;
+            }
+            song = [];
+            for (let i = 0; i < 5; i++) {
+                song.push(randomTone());
+            }
+        }
+        function play(e) {
+            function delayedNote(index) {
+                setTimeout(function () {
+                    const note = song[index];
+                    playNote(note);
+                }, 500 * index);
+            }
+            for (let i = 0; i < song.length; i++) {
+                delayedNote(i);
+            }
+        }
+        async function playNote(pitch) {
+            const note = "note.mp3";
+            const context = new AudioContext();
+            const source = context.createBufferSource();
+            const audioBuffer = await fetch(note)
+                .then(res => res.arrayBuffer())
+                .then(ArrayBuffer => context.decodeAudioData(ArrayBuffer));
+            source.buffer = audioBuffer;
+            source.playbackRate.value = pitch
+            source.connect(context.destination);
+            source.start();
+        }
+    </script>
+    <h1>Play the song again!</h1>
+    <p>Listen to the generated song and play the songs again</p>
+    <button id="red">Red</button>
+    <button id="blue">Blue</button>
+    <button id="green">Green</button>
+    <button id="yellow">Yellow</button>
+    <br />
+    <button id="play">Play again</button>
+    <button id="new">New Game</button>
+</body>
 </html>
