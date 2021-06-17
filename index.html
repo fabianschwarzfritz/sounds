@@ -9,25 +9,50 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const red = document.getElementById("red");
+            red.addEventListener("click", key);
             const blue = document.getElementById("blue");
+            blue.addEventListener("click", key);
             const green = document.getElementById("green");
+            green.addEventListener("click", key);
             const yellow = document.getElementById("yellow");
+            yellow.addEventListener("click", key);
             const playButton = document.getElementById("play");
+            playButton.addEventListener("click", play);
             const ne = document.getElementById("new");
             ne.addEventListener("click", restart);
-            playButton.addEventListener("click", play);
         });
 
         let song = [1, 2, 3, 4];
         let played = [];
+        let checkTimeout;
 
         function key(e) {
             const id = e.target.id;
-            let pitch;
-            if (id === red) {
+            const mapping = {
+                "red": 1,
+                "blue": 2,
+                "green": 3,
+                "yellow": 4,
+            };
+            const pitch = mapping[id];
+            played.push(pitch);
+            playNote(pitch);
+            console.log(played);
+            clearTimeout(checkTimeout);
+            checkTimeout = setTimeout(verify, 3000);
+        }
+        function verify() {
+            console.log(played);
+            console.log(song);
+            if(JSON.stringify(played) === JSON.stringify(song)) {
+                console.log("win");
+                alert("You should become a musician!");
+            } else {
+                console.log("loose");
+                alert("No that's not it. Keep on practicing!");
             }
-            playNote(e
-         }
+            played = [];
+        }
         function restart(e) {
             function randomTone() {
                 return Math.floor(Math.random() * 4) + 1;
