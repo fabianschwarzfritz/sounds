@@ -6,13 +6,13 @@
    <body>
       <script>
          document.addEventListener("DOMContentLoaded", function() {
-         const red = document.getElementById("red");
-         const blue = document.getElementById("blue");
-         const green = document.getElementById("green");
-         const playButton = document.getElementById("play");
-         const ne = document.getElementById("new");
-         ne.addEventListener("click", restart);
-         playButton.addEventListener("click", play);
+             const red = document.getElementById("red");
+             const blue = document.getElementById("blue");
+             const green = document.getElementById("green");
+             const playButton = document.getElementById("play");
+             const ne = document.getElementById("new");
+             ne.addEventListener("click", restart);
+             playButton.addEventListener("click", play);
          });
          
          let song = [1, 2, 3, 4];
@@ -29,7 +29,7 @@
          function play(e) {
              function delayedNote(index) {
                  setTimeout(function() {
-                     const note = song[index]t 
+                     const note = song[index];
                      playNote(note);
                  }, 500 * index);
              }
