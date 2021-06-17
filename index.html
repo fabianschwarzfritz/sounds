@@ -86,14 +86,47 @@
             source.start();
         }
     </script>
+    <style>
+        #red{
+            background-color: #f44336;
+        }
+        #blue {
+            background-color: #008CBA;
+        }
+        #green {
+            background-color: #4CAF50;
+        }
+        #yellow {
+            background-color: #FFC300;
+        }
+        .pianokey {
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        .button {
+            border: none;
+            background-color: #D3D3D3;
+            color: black;
+            padding: 5px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
     <h1>Play the song again!</h1>
     <p>Listen to the generated song and play the songs again</p>
-    <button id="red">Red</button>
-    <button id="blue">Blue</button>
-    <button id="green">Green</button>
-    <button id="yellow">Yellow</button>
+    <button id="red" class="pianokey">Red</button>
+    <button id="blue" class="pianokey">Blue</button>
+    <button id="green" class="pianokey">Green</button>
+    <button id="yellow" class="pianokey">Yellow</button>
     <br />
-    <button id="play">Play again</button>
-    <button id="new">New Game</button>
+    <button id="play" class="button">Play again</button>
+    <button id="new" class="button">New Game</button>
 </body>
 </html>
