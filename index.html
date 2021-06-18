@@ -22,20 +22,27 @@
             ne.addEventListener("click", restart);
         });
 
-        let song = [1, 2, 3, 4];
+        const NOTE_HZ = 440;
+        const NOTE_C = 261;
+        const NOTE_E = 329;
+        const NOTE_G = 392;
+        const NOTE_B = 493;
+        const possibleNotes = [NOTE_C, NOTE_E, NOTE_G, NOTE_B];
+        let song = [NOTE_C, NOTE_E, NOTE_G, NOTE_B];
         let played = [];
         let checkTimeout;
 
         function key(e) {
             const id = e.target.id;
             const mapping = {
-                "red": 1,
-                "blue": 2,
-                "green": 3,
-                "yellow": 4,
+                "red": NOTE_C,
+                "blue": NOTE_E,
+                "green": NOTE_G,
+                "yellow": NOTE_B,
             };
-            const pitch = mapping[id];
-            played.push(pitch);
+            const hertz = mapping[id];
+            played.push(hertz);
+            const pitch = pitchHz(hertz);
             playNote(pitch);
             console.log(played);
             clearTimeout(checkTimeout);
@@ -55,7 +62,8 @@
         }
         function restart(e) {
             function randomTone() {
-                return Math.floor(Math.random() * 4) + 1;
+                const random = Math.floor(Math.random() * possibleNotes.length);
+                return possibleNotes[random];
             }
             song = [];
             for (let i = 0; i < 5; i++) {
@@ -66,14 +74,19 @@
             function delayedNote(index) {
                 setTimeout(function () {
                     const note = song[index];
-                    playNote(note);
+                    const pitch = pitchHz(note);
+                    playNote(pitch);
                 }, 500 * index);
             }
             for (let i = 0; i < song.length; i++) {
                 delayedNote(i);
             }
         }
+        function pitchHz(hertz) {
+            return hertz / NOTE_HZ;
+        }
         async function playNote(pitch) {
+            console.log(pitch);
             const note = "note.mp3";
             const context = new AudioContext();
             const source = context.createBufferSource();
