@@ -31,6 +31,7 @@
         let song = [NOTE_C, NOTE_E, NOTE_G, NOTE_B];
         let played = [];
         let checkTimeout;
+        let audioBuffer;
 
         function key(e) {
             const id = e.target.id;
@@ -87,16 +88,22 @@
         }
         async function playNote(pitch) {
             console.log(pitch);
-            const note = "note.mp3";
-            const context = new AudioContext();
+            const context = await download();
             const source = context.createBufferSource();
-            const audioBuffer = await fetch(note)
-                .then(res => res.arrayBuffer())
-                .then(ArrayBuffer => context.decodeAudioData(ArrayBuffer));
             source.buffer = audioBuffer;
             source.playbackRate.value = pitch
             source.connect(context.destination);
             source.start();
+        }
+        async function download() {
+            const note = "note.mp3";
+            const context = new AudioContext();
+            if(!audioBuffer) {
+                audioBuffer = await fetch(note)
+                    .then(res => res.arrayBuffer())
+                    .then(ArrayBuffer => context.decodeAudioData(ArrayBuffer));
+            }
+            return context;
         }
     </script>
     <style>
