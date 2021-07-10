@@ -4,6 +4,7 @@ MAINTAINER Fabian Schwarz-Fritz "fabian@schwarz-fritz.de"
 USER root
 
 ADD index.html /usr/share/nginx/html/
+ADD style.css /usr/share/nginx/html/
 ADD note.mp3 /usr/share/nginx/html/
 ADD sounds.js /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/nginx.conf

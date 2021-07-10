@@ -1,0 +1,31 @@
+#red{
+	background-color: #f44336;
+}
+#blue {
+	background-color: #008CBA;
+}
+#green {
+	background-color: #4CAF50;
+}
+#yellow {
+	background-color: #FFC300;
+}
+.pianokey {
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
+.button {
+	border: none;
+	background-color: #D3D3D3;
+	color: black;
+	padding: 5px 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
